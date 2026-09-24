@@ -105,7 +105,7 @@ function screenIntro(){
     <div class="btnrow"><button class="primary" id="go" style="display:none">COMEÇAR MINHA HISTÓRIA</button></div>`);
   render(n);
   const ln=n.querySelector('#ln'), go=n.querySelector('#go');
-  function step(){ln.textContent=lines[i];i++;if(i<lines.length){setTimeout(step,1600);}else{go.style.display='inline-block';}}
+  function step(){ln.textContent=lines[i];i++;if(i<lines.length){setTimeout(step, 2800);}else{go.style.display='inline-block';}}
   step();
   go.onclick=screenTraits;
 }
@@ -291,7 +291,7 @@ function screenReveal(){
     <div class="btnrow"><button class="primary" id="go" style="display:none">Continuar</button></div>`);
   render(n);
   const ln=n.querySelector('#ln'), go=n.querySelector('#go');
-  function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step,1900);else go.style.display='inline-block';}
+  function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step, 2800);else go.style.display='inline-block';}
   step();
   go.onclick=screenParadox;
 }
@@ -323,7 +323,7 @@ function screenFinal(){
     <div class="btnrow"><button class="primary" id="go" style="display:none">Continuar</button></div>`);
   render(n);
   const ln=n.querySelector('#ln'), go=n.querySelector('#go');
-  function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step,2200);else go.style.display='inline-block';}
+  function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step, 2800);else go.style.display='inline-block';}
   step();
   go.onclick=screenTitle;
 }
