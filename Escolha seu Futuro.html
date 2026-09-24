@@ -18,7 +18,7 @@ body{height:100%;margin:0;background:radial-gradient(1200px 800px at 50% -10%,#0
 .eyebrow{font-size:13px;color:var(--accent);letter-spacing:.04em;margin-bottom:6px}
 .timeline{display:flex;gap:6px;font-size:11px;color:var(--dim);margin-bottom:22px;flex-wrap:wrap}
 .timeline b{color:var(--accent)}
-.stage{flex:1;display:flex;flex-direction:column;justify-content:center;animation:fade .5s ease}
+.stage{flex:1;display:flex;flex-direction:column;justify-content:center;animation:fade .20s ease}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .big{font-size:clamp(28px,7vw,44px);font-weight:700;line-height:1.15;margin:10px 0}
 .line{font-size:18px;line-height:1.6;color:var(--txt);margin:8px 0;min-height:1em}
@@ -33,7 +33,7 @@ button.ghost{background:transparent;color:var(--txt);border:1px solid var(--line
   border-radius:10px;font-size:14px;cursor:pointer}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:14px 0}
 .opt{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 12px;cursor:pointer;
-  text-align:left;transition:border-color .15s,transform .15s}
+  text-align:left;transition:border-color .18s,transform .20s}
 .opt:hover{border-color:var(--accent);transform:translateY(-2px)}
 .opt.sel{border-color:var(--accent);background:#0e1e18}
 .opt .em{font-size:22px;display:block;margin-bottom:6px}
@@ -54,7 +54,7 @@ button.ghost{background:transparent;color:var(--txt);border:1px solid var(--line
   padding:9px 0;font-size:14px}
 .summary-row span:first-child{color:var(--dim)}
 .progressbar{height:3px;background:var(--line);border-radius:2px;margin-bottom:20px;overflow:hidden}
-.progressbar i{display:block;height:100%;background:var(--accent);transition:width .4s}
+.progressbar i{display:block;height:100%;background:var(--accent);transition:width .10s}
 </style>
 </head>
 <body>
@@ -98,14 +98,14 @@ function el(html){const d=document.createElement('div');d.className='stage';d.in
 // ---------- INTRO ----------
 function screenIntro(){
   const lines=['2026','Você está entrando no mercado de trabalho.',
-    'Durante as próximas décadas, máquinas e inteligências artificiais serão capazes de realizar cada vez mais tarefas.',
+    'Durante as próximas décadas, máquinas e inteligências artificiais', 'serão capazes de realizar cada vez mais tarefas.',
     'Você está preparado?'];
   let i=0;
   const n=el(`<div class="eyebrow">ESCOLHA SEU FUTURO</div><div id="ln" class="big"></div>
     <div class="btnrow"><button class="primary" id="go" style="display:none">COMEÇAR MINHA HISTÓRIA</button></div>`);
   render(n);
   const ln=n.querySelector('#ln'), go=n.querySelector('#go');
-  function step(){ln.textContent=lines[i];i++;if(i<lines.length){setTimeout(step,1600);}else{go.style.display='inline-block';}}
+  function step(){ln.textContent=lines[i];i++;if(i<lines.length){setTimeout(step, 2800);}else{go.style.display='inline-block';}}
   step();
   go.onclick=screenTraits;
 }
@@ -258,7 +258,7 @@ function screenCrisis(){
 
 // ---------- CONSEQUENCE ----------
 function computeEnding(){
-  const s=S.stats;
+  const s=S.stats; 
   if(s.tradicional>=6 && s.adapt<3) return {cls:'warn',emoji:'🔴',title:'DESEMPREGO TECNOLÓGICO',
     txt:'Sua função sofreu uma automação muito intensa e você está temporariamente procurando uma nova posição. Isso não significa desemprego permanente — significa que uma transição é necessária.'};
   if(s.tradicional>=4) return {cls:'warn',emoji:'🟠',title:'PRESSÃO DA AUTOMAÇÃO',
@@ -291,7 +291,7 @@ function screenReveal(){
     <div class="btnrow"><button class="primary" id="go" style="display:none">Continuar</button></div>`);
   render(n);
   const ln=n.querySelector('#ln'), go=n.querySelector('#go');
-  function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step,1900);else go.style.display='inline-block';}
+  function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step, 2800);else go.style.display='inline-block';}
   step();
   go.onclick=screenParadox;
 }
@@ -323,7 +323,7 @@ function screenFinal(){
     <div class="btnrow"><button class="primary" id="go" style="display:none">Continuar</button></div>`);
   render(n);
   const ln=n.querySelector('#ln'), go=n.querySelector('#go');
-  function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step,2200);else go.style.display='inline-block';}
+  function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step,3000);else go.style.display='inline-block';}
   step();
   go.onclick=screenTitle;
 }
