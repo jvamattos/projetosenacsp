@@ -7,355 +7,398 @@
 <style>
 :root{
   --bg:#07090d; --bg2:#0d1117; --card:#121820; --line:#1f2733;
-  --txt:#e8edf4; --dim:#8a97a8; --accent:#3ddc97; --accent2:#e8b64c; --warn:#e85d5d;
+  --txt:#e8edf4; --dim:#8a97a8; --accent:#3ddc97; --accent2:#e8b64c; --warn:#e85d5d; --blue:#4c9ee8;
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box}
 html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{height:100%;margin:0;background:radial-gradient(1200px 800px at 50% -10%,#0f1621,var(--bg));color:var(--txt);
   font-family:'Segoe UI',system-ui,-apple-system,sans-serif;overflow-x:hidden;min-height:100vh}
-#app{max-width:720px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding:28px 20px 40px}
+#app{max-width:760px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding:28px 20px 40px}
 .eyebrow{font-size:13px;color:var(--accent);letter-spacing:.04em;margin-bottom:6px}
-.timeline{display:flex;gap:6px;font-size:11px;color:var(--dim);margin-bottom:22px;flex-wrap:wrap}
+.timeline{display:flex;gap:6px;font-size:11px;color:var(--dim);margin-bottom:18px;flex-wrap:wrap}
 .timeline b{color:var(--accent)}
 .stage{flex:1;display:flex;flex-direction:column;justify-content:center;animation:fade .5s ease}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.big{font-size:clamp(28px,7vw,44px);font-weight:700;line-height:1.15;margin:10px 0}
-.line{font-size:18px;line-height:1.6;color:var(--txt);margin:8px 0;min-height:1em}
-.lead{font-size:15px;color:var(--dim);margin-bottom:18px}
+.big{font-size:clamp(26px,6.5vw,40px);font-weight:700;line-height:1.15;margin:8px 0}
+.line{font-size:17px;line-height:1.6;color:var(--txt);margin:8px 0;min-height:1em}
+.lead{font-size:15px;color:var(--dim);margin-bottom:16px}
 .tag{display:inline-block;font-size:11px;color:var(--accent2);border:1px solid #4a3d1f;background:#1a1509;
-  padding:3px 9px;border-radius:20px;margin-bottom:14px}
-.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  padding:3px 9px;border-radius:20px;margin-bottom:12px}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 button.primary{background:var(--accent);color:#04170f;border:none;padding:13px 24px;border-radius:10px;
   font-size:15px;font-weight:600;cursor:pointer}
 button.primary:disabled{opacity:.4;cursor:default}
 button.ghost{background:transparent;color:var(--txt);border:1px solid var(--line);padding:12px 20px;
   border-radius:10px;font-size:14px;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:12px 0}
 .opt{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 12px;cursor:pointer;
   text-align:left;transition:border-color .15s,transform .15s}
 .opt:hover{border-color:var(--accent);transform:translateY(-2px)}
 .opt.sel{border-color:var(--accent);background:#0e1e18}
 .opt .em{font-size:22px;display:block;margin-bottom:6px}
 .opt .t{font-size:14px;font-weight:600}
-.choices{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.opt .d{font-size:12px;color:var(--dim);margin-top:4px}
+.choices{display:flex;flex-direction:column;gap:8px;margin-top:16px}
 .choice{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 15px;
   cursor:pointer;font-size:14.5px;text-align:left}
 .choice:hover{border-color:var(--accent)}
-.result{border-left:3px solid var(--accent);padding:14px 16px;background:var(--card);border-radius:8px;margin:16px 0}
+.choice small{display:block;color:var(--dim);font-size:11.5px;margin-top:3px}
+.result{border-left:3px solid var(--accent);padding:14px 16px;background:var(--card);border-radius:8px;margin:14px 0}
 .result.warn{border-color:var(--warn)}
 .result.gold{border-color:var(--accent2)}
+.result.blue{border-color:var(--blue)}
 .result h3{margin:0 0 6px;font-size:17px}
-.diagram{font-family:monospace;font-size:13px;color:var(--accent);line-height:2;white-space:pre;margin:16px 0}
-.scenarios{display:grid;gap:10px;margin:16px 0}
+.diagram{font-family:monospace;font-size:13px;color:var(--accent);line-height:2;white-space:pre;margin:14px 0}
+.scenarios{display:grid;gap:10px;margin:14px 0}
 .sc{border:1px solid var(--line);border-radius:10px;padding:13px 15px;background:var(--card)}
 .sc b{color:var(--accent2)}
 .summary-row{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);
   padding:9px 0;font-size:14px}
 .summary-row span:first-child{color:var(--dim)}
-.progressbar{height:3px;background:var(--line);border-radius:2px;margin-bottom:20px;overflow:hidden}
+.progressbar{height:3px;background:var(--line);border-radius:2px;margin-bottom:18px;overflow:hidden}
 .progressbar i{display:block;height:100%;background:var(--accent);transition:width .4s}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:12px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.stat .l{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.03em}
+.stat .track{height:4px;background:var(--line);border-radius:2px;margin-top:5px;overflow:hidden}
+.stat .track i{display:block;height:100%;background:var(--accent)}
+.vtimeline{border-left:2px solid var(--line);margin:18px 0 18px 8px;padding-left:18px}
+.vtimeline .ev{margin-bottom:16px;position:relative}
+.vtimeline .ev:before{content:'';position:absolute;left:-23px;top:4px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+.vtimeline .age{font-size:12px;color:var(--accent2);font-weight:700}
+.vtimeline .txt{font-size:14px;color:var(--txt);margin-top:2px}
 </style>
 </head>
 <body>
 <div id="app"></div>
 <script>
-const $=id=>document.getElementById(id);
 const app=document.getElementById('app');
 
-const AREAS={
- 'Tecnologia':{em:'💻',profs:['Desenvolvedor de software','Especialista em cibersegurança','Analista de dados','Desenvolvedor de jogos','Engenheiro de IA'],tasks:['gerar código automaticamente','encontrar erros e vulnerabilidades','escrever documentação','criar testes','montar protótipos rápidos']},
- 'Saúde':{em:'⚕️',profs:['Médico','Enfermeiro','Psicólogo','Fisioterapeuta','Técnico de enfermagem'],tasks:['triagem inicial de sintomas','análise de exames e imagens','organização de prontuários','sugestão de diagnósticos','monitoramento remoto de pacientes']},
- 'Direito':{em:'⚖️',profs:['Advogado','Analista jurídico','Promotor','Juiz','Consultor jurídico'],tasks:['pesquisa de jurisprudência','revisão de contratos','redação de peças simples','resumo de processos','análise de risco jurídico']},
- 'Design e criação':{em:'🎨',profs:['Designer','Editor de vídeo','Publicitário','Fotógrafo','Criador de conteúdo'],tasks:['gerar imagens e variações','montar layouts','editar vídeo automaticamente','criar roteiros','prototipar campanhas']},
- 'Administração e negócios':{em:'💼',profs:['Administrador','Empreendedor','RH','Consultor','Gerente'],tasks:['triagem de currículos','organização de planilhas','relatórios automáticos','previsões simples','atendimento inicial a clientes']},
- 'Finanças':{em:'💰',profs:['Contador','Analista financeiro','Economista','Auditor','Consultor financeiro'],tasks:['conciliação de dados','detecção de fraudes','projeções financeiras','geração de relatórios','análise de risco']},
- 'Indústria':{em:'🏭',profs:['Operador','Técnico','Mecânico','Supervisor','Engenheiro de produção'],tasks:['operação de máquinas repetitivas','controle de qualidade visual','manutenção preditiva','logística interna','monitoramento de linha']},
- 'Educação':{em:'📚',profs:['Professor','Coordenador','Pesquisador','Tutor','Produtor de conteúdo educacional'],tasks:['correção automática','geração de exercícios','tutoria personalizada','resumo de conteúdos','planejamento de aulas']},
- 'Comunicação e marketing':{em:'📢',profs:['Jornalista','Social media','Copywriter','Relações públicas','Especialista em marketing'],tasks:['redação de textos curtos','geração de posts','análise de métricas','tradução e adaptação','pesquisa de pauta']},
- 'Ciência e pesquisa':{em:'🔬',profs:['Cientista de dados','Biólogo','Físico','Pesquisador acadêmico','Analista de laboratório'],tasks:['análise de grandes volumes de dados','simulações','revisão de literatura','organização de experimentos','geração de hipóteses']},
- 'Transporte e logística':{em:'🚚',profs:['Motorista','Caminhoneiro','Operador logístico','Gestor de logística','Piloto'],tasks:['roteirização automática','monitoramento de frota','previsão de demanda','condução assistida','gestão de estoque']},
- 'Engenharia':{em:'🏗️',profs:['Engenheiro civil','Engenheiro mecânico','Engenheiro elétrico','Arquiteto','Técnico especializado'],tasks:['cálculos estruturais','simulações de projeto','geração de plantas','detecção de falhas','otimização de materiais']},
- 'Comércio e atendimento':{em:'🛒',profs:['Vendedor','Caixa','Atendente','Gerente de loja','Representante comercial'],tasks:['atendimento inicial automatizado','recomendação de produtos','controle de estoque','emissão de notas','análise de vendas']}
+/* ---------------- DATA: PROFESSÕES ---------------- */
+// [id, nome, área, salário(1-5), automationRisk, aiExposure, techSkill, humanSkill]
+const PROF=[
+ ['dev-jr','Desenvolvedor Júnior','Tecnologia',2,55,85,70,30],
+ ['dev-sr','Engenheiro de Software','Tecnologia',4,35,80,85,35],
+ ['data-analyst','Analista de Dados','Tecnologia',3,45,85,75,30],
+ ['ia-specialist','Especialista em IA','Tecnologia',5,15,95,95,30],
+ ['cyber','Especialista em Cibersegurança','Tecnologia',4,20,70,90,30],
+ ['suporte','Suporte Técnico','Tecnologia',2,65,80,55,45],
+ ['sysadmin','Administrador de Sistemas','Tecnologia',3,50,75,75,30],
+ ['freelancer-tech','Freelancer de Tecnologia','Tecnologia',2,40,75,70,40],
+ ['enfermeiro','Enfermeiro','Saúde',3,15,35,40,85],
+ ['tec-enfermagem','Técnico de Enfermagem','Saúde',2,20,35,35,85],
+ ['fisio','Fisioterapeuta','Saúde',3,10,30,45,90],
+ ['farmaceutico','Farmacêutico','Saúde',3,30,45,55,60],
+ ['medico','Médico','Saúde',5,10,55,70,85],
+ ['tec-lab','Técnico de Laboratório','Saúde',2,45,60,55,40],
+ ['assistente-adm','Assistente Administrativo','Negócios',2,60,70,45,45],
+ ['analista-financeiro','Analista Financeiro','Negócios',4,50,75,70,35],
+ ['contador','Contador','Negócios',3,55,80,60,35],
+ ['gerente','Gerente','Negócios',4,15,45,50,80],
+ ['consultor','Consultor','Negócios',4,20,50,55,80],
+ ['empreendedor','Empreendedor','Negócios',3,10,55,55,70],
+ ['operador','Operador de Máquinas','Indústria',2,70,55,35,40],
+ ['tec-industrial','Técnico Industrial','Indústria',3,45,60,65,40],
+ ['eletricista','Eletricista','Indústria',3,25,30,55,45],
+ ['mecanico','Mecânico','Indústria',3,20,30,55,45],
+ ['engenheiro','Engenheiro de Produção','Indústria',5,20,55,80,40],
+ ['esp-automacao','Especialista em Automação','Indústria',4,10,65,90,35],
+ ['supervisor','Supervisor de Produção','Indústria',3,25,40,50,70],
+ ['designer','Designer','Criatividade',3,35,80,65,55],
+ ['redator','Redator / Copywriter','Criatividade',2,50,85,55,60],
+ ['jornalista','Jornalista','Criatividade',2,45,75,55,65],
+ ['fotografo','Fotógrafo','Criatividade',2,35,55,55,55],
+ ['editor-video','Editor de Vídeo','Criatividade',2,45,80,65,45],
+ ['criador-conteudo','Criador de Conteúdo','Criatividade',2,25,60,50,75],
+ ['marketing','Profissional de Marketing','Criatividade',3,40,80,55,65],
+ ['motorista','Motorista','Serviços',2,65,40,30,45],
+ ['entregador','Entregador','Serviços',1,60,35,25,40],
+ ['cozinheiro','Cozinheiro','Serviços',2,35,25,40,55],
+ ['garcom','Garçom','Serviços',1,40,20,25,70],
+ ['vendedor','Vendedor','Serviços',2,45,55,35,75],
+ ['cabeleireiro','Cabeleireiro','Serviços',2,10,15,40,80],
+ ['autonomo','Profissional Autônomo','Serviços',2,30,40,45,65],
+];
+const P={}; PROF.forEach(r=>P[r[0]]={id:r[0],name:r[1],area:r[2],salary:r[3],automationRisk:r[4],aiExposure:r[5],techSkill:r[6],humanSkill:r[7]});
+
+/* ---------------- CAMINHOS EDUCACIONAIS (18 anos) ---------------- */
+const PATHS={
+ faculdade:{label:'Faculdade',em:'🎓',desc:'4-6 anos de formação acadêmica ampla.',jobs:['medico','engenheiro','analista-financeiro','gerente','jornalista'],track:'business'},
+ tecnico:{label:'Curso técnico',em:'🛠️',desc:'Formação rápida e prática.',jobs:['tec-industrial','tec-enfermagem','eletricista','tec-lab','mecanico'],track:'industrial'},
+ mercado:{label:'Entrar direto no mercado',em:'🏃',desc:'Começar a trabalhar imediatamente.',jobs:['vendedor','garcom','entregador','operador','cozinheiro'],track:'service'},
+ empreender:{label:'Empreender',em:'🚀',desc:'Criar seu próprio negócio desde cedo.',jobs:['empreendedor','autonomo','criador-conteudo','consultor'],track:'business'},
+ programacao:{label:'Aprender programação',em:'💻',desc:'Autodidata ou bootcamp em tecnologia.',jobs:['dev-jr','data-analyst','suporte','sysadmin'],track:'tech'},
+ criativa:{label:'Área criativa',em:'🎨',desc:'Design, comunicação e produção de conteúdo.',jobs:['designer','redator','fotografo','editor-video','marketing'],track:'creative'}
 };
 
-const TRAITS=[['🧠','Analítico'],['🎨','Criativo'],['🤝','Comunicativo'],['🔧','Prático'],['🚀','Empreendedor'],['❤️','Gosto de trabalhar com pessoas'],['💻','Gosto de tecnologia']];
-
-let S={traits:[],area:null,prof:null,choices:[],stats:{adapt:0,humano:0,tecnico:0,tradicional:0}};
-
-function bump(k,n){S.stats[k]=(S.stats[k]||0)+n}
-function log(txt){S.choices.push(txt)}
-
-const YEARS=['2026','2028','2031','2035','2040','FUTURO'];
-function timelineHTML(active){
-  return '<div class="timeline">'+YEARS.map(y=>`<span>${y===active?'<b>'+y+'</b>':y}</span>`).join(' → ')+'</div>';
+/* ---------------- ESTADO ---------------- */
+let S=null;
+function newState(){
+  return {
+    age:18, pathKey:null, profId:null, traits:[],
+    stats:{salary:40,stability:50,experience:10,specialization:10,qualification:30,techAdapt:40,
+      relationship:55,automationRisk:50,aiExposure:50,satisfaction:55,opportunities:40,
+      promotionChance:30,careerChangeChance:30},
+    decisionHistory:[], timeline:[]
+  };
 }
-function bar(pct){return `<div class="progressbar"><i style="width:${pct}%"></i></div>`;}
+function clamp(v){return Math.max(0,Math.min(100,v));}
+function applyEffects(eff){
+  Object.entries(eff).forEach(([k,v])=>{ S.stats[k]=clamp((S.stats[k]||0)+v); });
+}
+function logHist(age,text){ S.decisionHistory.push(text); S.timeline.push({age,text}); }
 
+/* ---------------- DECISÕES POR TRILHA E IDADE ---------------- */
+// cada pool: array de {text, hint, effects, hist}
+const POOLS={
+ 21:{
+  tech:[
+   {text:'Aceitar vaga júnior com salário imediato',hint:'+Salário, -Especialização',effects:{salary:10,specialization:-5,stability:5},hist:'Aos 21, priorizou um emprego com salário imediato.'},
+   {text:'Investir em especialização antes do primeiro emprego',hint:'+Especialização, -Salário inicial',effects:{specialization:15,qualification:10,salary:-5},hist:'Aos 21, investiu em uma formação altamente especializada antes de começar a trabalhar.'},
+   {text:'Trabalhar como freelancer',hint:'+Autonomia, -Estabilidade',effects:{stability:-10,opportunities:10,careerChangeChance:10},hist:'Aos 21, optou por trabalhar como freelancer.'}
+  ],
+  industrial:[
+   {text:'Aceitar vaga de operação assim que possível',hint:'+Estabilidade, -Qualificação',effects:{stability:10,salary:5,qualification:-5},hist:'Aos 21, aceitou a primeira vaga disponível na indústria.'},
+   {text:'Buscar especialização técnica avançada',hint:'+Qualificação, +Adaptação',effects:{qualification:15,techAdapt:10,specialization:10},hist:'Aos 21, buscou uma especialização técnica avançada.'},
+   {text:'Entrar em empresa com forte automação',hint:'+Exposição à IA',effects:{aiExposure:10,techAdapt:10,automationRisk:5},hist:'Aos 21, entrou em uma empresa com linhas altamente automatizadas.'}
+  ],
+  business:[
+   {text:'Priorizar estabilidade em empresa grande',hint:'+Estabilidade, -Risco',effects:{stability:15,opportunities:-5},hist:'Aos 21, priorizou a estabilidade de uma empresa grande.'},
+   {text:'Entrar em uma startup',hint:'+Oportunidades, -Estabilidade',effects:{opportunities:15,stability:-10,careerChangeChance:10},hist:'Aos 21, entrou em uma startup em crescimento.'},
+   {text:'Focar em networking e relacionamentos',hint:'+Relacionamento',effects:{relationship:15,opportunities:5},hist:'Aos 21, investiu pesado em networking.'}
+  ],
+  creative:[
+   {text:'Montar portfólio e aceitar projetos pequenos',hint:'+Experiência, -Salário',effects:{experience:15,salary:-5},hist:'Aos 21, priorizou montar portfólio aceitando projetos pequenos.'},
+   {text:'Aprender ferramentas de IA generativa',hint:'+Adaptação, -Risco',effects:{techAdapt:15,automationRisk:-10,aiExposure:5},hist:'Aos 21, começou a aprender ferramentas de IA generativa.'},
+   {text:'Buscar emprego fixo em agência',hint:'+Estabilidade',effects:{stability:12,opportunities:-5},hist:'Aos 21, buscou um emprego fixo em uma agência.'}
+  ],
+  service:[
+   {text:'Aceitar o primeiro emprego disponível',hint:'+Estabilidade imediata',effects:{stability:10,salary:5},hist:'Aos 21, aceitou o primeiro emprego disponível.'},
+   {text:'Buscar curso noturno para mudar de área',hint:'+Qualificação, -Tempo livre',effects:{qualification:15,satisfaction:-5,careerChangeChance:15},hist:'Aos 21, começou um curso noturno para mudar de área.'},
+   {text:'Tentar abrir um pequeno negócio próprio',hint:'+Risco, +Oportunidade',effects:{opportunities:10,stability:-10},hist:'Aos 21, tentou abrir um pequeno negócio próprio.'}
+  ]
+ },
+ 25:[
+  {text:'Aceitar uma promoção',hint:'+Salário, +Estabilidade',effects:{salary:10,promotionChance:20,satisfaction:5},hist:'Aos 25, aceitou uma promoção.'},
+  {text:'Recusar a promoção e focar em outra área',hint:'+Flexibilidade futura',effects:{careerChangeChance:15,promotionChance:-10},hist:'Aos 25, recusou uma promoção para manter flexibilidade.'},
+  {text:'Fazer uma pós-graduação ou curso avançado',hint:'+Qualificação, +Especialização',effects:{qualification:15,specialization:10,salary:-5},hist:'Aos 25, investiu em uma pós-graduação.'},
+  {text:'Aprender a trabalhar com Inteligência Artificial',hint:'+Adaptação, -Risco de automação',effects:{techAdapt:20,automationRisk:-15,aiExposure:10,opportunities:10},hist:'Aos 25, decidiu aprender a trabalhar com Inteligência Artificial.'},
+  {text:'Ignorar as novas tecnologias e manter a rotina',hint:'-Adaptação, +Risco',effects:{techAdapt:-15,automationRisk:15,opportunities:-10},hist:'Aos 25, optou por ignorar as novas tecnologias que surgiam.'}
+ ],
+ 28:'EVENT',
+ 31:[
+  {text:'Mudar de cidade por uma oportunidade melhor',hint:'+Oportunidades, -Relacionamento',effects:{opportunities:15,relationship:-10,salary:10},hist:'Aos 31, mudou de cidade por uma oportunidade de trabalho.'},
+  {text:'Trabalhar remotamente',hint:'+Qualidade de vida',effects:{satisfaction:15,relationship:-5,opportunities:5},hist:'Aos 31, passou a trabalhar remotamente.'},
+  {text:'Abrir uma empresa própria',hint:'+Risco, +Oportunidade',effects:{opportunities:15,stability:-15,careerChangeChance:15},hist:'Aos 31, decidiu abrir uma empresa própria.'},
+  {text:'Aceitar um salário maior com menos estabilidade',hint:'+Salário, -Estabilidade',effects:{salary:15,stability:-15},hist:'Aos 31, aceitou um salário maior em troca de menos estabilidade.'},
+  {text:'Buscar estabilidade e economizar',hint:'+Estabilidade, -Risco',effects:{stability:15,satisfaction:-5,opportunities:-5},hist:'Aos 31, priorizou estabilidade e passou a economizar.'}
+ ],
+ 35:'EVENT2',
+ 40:[
+  {text:'Migrar completamente de profissão',hint:'Grande mudança de carreira',effects:{careerChangeChance:30,specialization:-15,opportunities:15},hist:'Aos 40, migrou completamente de profissão.',migrate:true},
+  {text:'Especializar-se ainda mais na área atual',hint:'+Especialização, +Salário',effects:{specialization:20,salary:10,qualification:10},hist:'Aos 40, aprofundou ainda mais sua especialização.'},
+  {text:'Assumir posição de liderança/supervisão',hint:'+Promoção, +Relacionamento',effects:{promotionChance:25,relationship:10,salary:10},hist:'Aos 40, assumiu uma posição de liderança.'},
+  {text:'Priorizar qualidade de vida e reduzir ritmo',hint:'+Satisfação, -Salário',effects:{satisfaction:20,salary:-10,opportunities:-5},hist:'Aos 40, decidiu priorizar qualidade de vida e reduzir o ritmo de trabalho.'},
+  {text:'Trabalhar mais horas para crescer financeiramente',hint:'+Salário, -Satisfação',effects:{salary:15,satisfaction:-15},hist:'Aos 40, passou a trabalhar mais horas para crescer financeiramente.'}
+ ]
+};
+
+const EVENTS=[
+ {cond:s=>s.stats.automationRisk>55,title:'Sua empresa decide adotar IA em larga escala',
+  opts:[
+   {text:'Aprender rapidamente a operar os novos sistemas',effects:{techAdapt:20,aiExposure:10,automationRisk:-15},hist:'Aprendeu rapidamente a operar os novos sistemas de IA da empresa.'},
+   {text:'Resistir à mudança',effects:{techAdapt:-15,automationRisk:15,stability:-10},hist:'Resistiu à adoção de IA na empresa.'}
+  ]},
+ {cond:s=>true,title:'Um colega de trabalho é substituído por automação',
+  opts:[
+   {text:'Buscar imediatamente novas qualificações',effects:{qualification:15,techAdapt:10,satisfaction:-5},hist:'Viu um colega ser substituído por automação e buscou novas qualificações.'},
+   {text:'Continuar normalmente, sem mudar nada',effects:{automationRisk:10,satisfaction:-10},hist:'Viu um colega ser substituído e optou por não mudar nada.'}
+  ]},
+ {cond:s=>s.stats.opportunities>50,title:'Surge um convite para trabalhar em uma startup',
+  opts:[
+   {text:'Aceitar o convite',effects:{opportunities:15,stability:-10,salary:5},hist:'Aceitou um convite para trabalhar em uma startup.'},
+   {text:'Recusar e manter a posição atual',effects:{stability:10,opportunities:-5},hist:'Recusou o convite de uma startup e manteve sua posição.'}
+  ]},
+ {cond:s=>true,title:'A empresa entra em crise financeira',
+  opts:[
+   {text:'Buscar outra colocação imediatamente',effects:{stability:-5,opportunities:10},hist:'A empresa entrou em crise e ele(a) buscou outra colocação.'},
+   {text:'Permanecer e tentar se tornar essencial',effects:{relationship:10,promotionChance:10,satisfaction:-5},hist:'A empresa entrou em crise e ele(a) decidiu permanecer e se tornar essencial.'}
+  ]}
+];
+
+/* ---------------- UTIL UI ---------------- */
+function bar(pct){return `<div class="progressbar"><i style="width:${pct}%"></i></div>`;}
 function render(node){app.innerHTML='';app.appendChild(node);window.scrollTo(0,0);}
 function el(html){const d=document.createElement('div');d.className='stage';d.innerHTML=html;return d;}
+function statBadges(keys){
+  const labels={salary:'Salário',stability:'Estabilidade',experience:'Experiência',specialization:'Especialização',
+    qualification:'Qualificação',techAdapt:'Adaptação tecnológica',relationship:'Relacionamento',
+    automationRisk:'Risco de automação',aiExposure:'Exposição à IA',satisfaction:'Satisfação',
+    opportunities:'Oportunidades',promotionChance:'Chance de promoção',careerChangeChance:'Chance de mudar de carreira'};
+  return `<div class="stats-grid">${keys.map(k=>`<div class="stat"><div class="l">${labels[k]}</div>
+    <div class="track"><i style="width:${S.stats[k]}%"></i></div></div>`).join('')}</div>`;
+}
 
-// ---------- INTRO ----------
+/* ---------------- TELAS ---------------- */
 function screenIntro(){
+  S=newState();
   const lines=['2026','Você está entrando no mercado de trabalho.',
     'Durante as próximas décadas, máquinas e inteligências artificiais serão capazes de realizar cada vez mais tarefas.',
-    'Você está preparado?'];
+    'Suas escolhas vão definir um caminho real — com consequências reais.'];
   let i=0;
   const n=el(`<div class="eyebrow">ESCOLHA SEU FUTURO</div><div id="ln" class="big"></div>
     <div class="btnrow"><button class="primary" id="go" style="display:none">COMEÇAR MINHA HISTÓRIA</button></div>`);
   render(n);
   const ln=n.querySelector('#ln'), go=n.querySelector('#go');
-  function step(){ln.textContent=lines[i];i++;if(i<lines.length){setTimeout(step, 2800);}else{go.style.display='inline-block';}}
-  step();
-  go.onclick=screenTraits;
+  (function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step,1500);else go.style.display='inline-block';})();
+  go.onclick=screenPath;
 }
 
-// ---------- TRAITS ----------
-function screenTraits(){
-  const n=el(`${bar(10)}<div class="eyebrow">PERSONAGEM</div>
-    <div class="big" style="font-size:26px">Qual dessas características mais combina com você?</div>
-    <div class="lead">Escolha até duas.</div>
-    <div class="grid" id="g"></div>
-    <div class="btnrow"><button class="primary" id="next" disabled>Continuar</button></div>`);
+function screenPath(){
+  const n=el(`${bar(10)}<div class="eyebrow">18 ANOS</div>
+    <div class="big" style="font-size:25px">Que caminho você escolhe para começar sua vida profissional?</div>
+    <div class="grid" id="g"></div>`);
   const g=n.querySelector('#g');
-  TRAITS.forEach(([em,label])=>{
+  Object.entries(PATHS).forEach(([key,p])=>{
     const o=document.createElement('div');o.className='opt';
-    o.innerHTML=`<span class="em">${em}</span><span class="t">${label}</span>`;
+    o.innerHTML=`<span class="em">${p.em}</span><span class="t">${p.label}</span><div class="d">${p.desc}</div>`;
+    o.onclick=()=>{S.pathKey=key;logHist(18,'Escolheu '+p.label.toLowerCase()+' como ponto de partida.');screenFirstJob();};
+    g.appendChild(o);
+  });
+  render(n);
+}
+
+function screenFirstJob(){
+  const path=PATHS[S.pathKey];
+  const n=el(`${bar(20)}<div class="eyebrow">21 ANOS</div>
+    <div class="big" style="font-size:25px">Qual foi sua primeira oportunidade de carreira?</div>
+    <div class="grid" id="g"></div>`);
+  const g=n.querySelector('#g');
+  path.jobs.forEach(id=>{
+    const pr=P[id];
+    const o=document.createElement('div');o.className='opt';
+    o.innerHTML=`<span class="t">${pr.name}</span><div class="d">${pr.area} · risco de automação ${pr.automationRisk<30?'baixo':pr.automationRisk<55?'médio':'alto'}</div>`;
     o.onclick=()=>{
-      if(o.classList.contains('sel')){o.classList.remove('sel');S.traits=S.traits.filter(t=>t!==label);}
-      else{ if(S.traits.length>=2)return; o.classList.add('sel');S.traits.push(label);}
-      n.querySelector('#next').disabled=S.traits.length===0;
+      S.profId=id;
+      S.stats.automationRisk=clamp((S.stats.automationRisk+pr.automationRisk)/2);
+      S.stats.aiExposure=clamp((S.stats.aiExposure+pr.aiExposure)/2);
+      S.stats.techAdapt=clamp((S.stats.techAdapt+pr.techSkill)/2);
+      S.stats.salary=clamp(S.stats.salary+pr.salary*4);
+      logHist(21,'Tornou-se '+pr.name.toLowerCase()+'.');
+      screenDecision(25);
     };
     g.appendChild(o);
   });
   render(n);
-  n.querySelector('#next').onclick=screenArea;
 }
 
-// ---------- AREA ----------
-function screenArea(){
-  const n=el(`${bar(20)}<div class="eyebrow">18 ANOS</div>
-    <div class="big" style="font-size:26px">Qual caminho profissional deseja seguir?</div>
-    <div class="grid" id="g"></div>`);
-  const g=n.querySelector('#g');
-  Object.entries(AREAS).forEach(([name,d])=>{
-    const o=document.createElement('div');o.className='opt';
-    o.innerHTML=`<span class="em">${d.em}</span><span class="t">${name}</span>`;
-    o.onclick=()=>{S.area=name;screenProf();};
-    g.appendChild(o);
-  });
-  render(n);
-}
-
-function screenProf(){
-  const d=AREAS[S.area];
-  const n=el(`${bar(28)}<div class="eyebrow">${S.area}</div>
-    <div class="big" style="font-size:26px">Escolha sua profissão.</div>
-    <div class="grid" id="g"></div>`);
-  const g=n.querySelector('#g');
-  d.profs.forEach(p=>{
-    const o=document.createElement('div');o.className='opt';
-    o.innerHTML=`<span class="t">${p}</span>`;
-    o.onclick=()=>{S.prof=p;screenContact();};
-    g.appendChild(o);
-  });
-  render(n);
-}
-
-// ---------- 2028 CONTACT WITH AI ----------
-function screenContact(){
-  const d=AREAS[S.area];
-  const tasks=d.tasks.slice(0,3).map(t=>'• '+t).join('<br>');
-  const n=el(`${bar(38)}${timelineHTML('2028')}
-    <div class="line">Ferramentas de inteligência artificial começam a executar parte das tarefas do seu trabalho como <b>${S.prof}</b>, como:</div>
-    <div class="line" style="color:var(--dim);font-size:15px">${tasks}</div>
-    <div class="line" style="margin-top:14px">O que você faz?</div>
+function screenDecision(age){
+  let pool=POOLS[age];
+  if(pool==='EVENT') return screenEvent(age,36,screenDecision.bind(null,31));
+  if(pool==='EVENT2') return screenEvent(age,52,screenDecision.bind(null,40));
+  if(age===21){ pool=POOLS[21][PATHS[S.pathKey].track]; }
+  const pctMap={25:30,31:60,40:80};
+  const n=el(`${bar(pctMap[age]||30)}<div class="eyebrow">${age} ANOS</div>
+    <div class="line">${age===40?'Você está no meio da sua carreira. Que decisão toma agora?':'Uma nova decisão importante surge no seu caminho.'}</div>
     <div class="choices" id="c"></div>`);
-  const opts=[
-    ['Ignoro. Minha experiência é suficiente.',{tradicional:2}],
-    ['Aprendo a utilizar IA como ferramenta.',{adapt:2,tecnico:1}],
-    ['Faço uma especialização profissional.',{adapt:1,tecnico:2}],
-    ['Tento migrar para uma função menos automatizável.',{humano:2}],
-    ['Começo meu próprio negócio utilizando tecnologia.',{adapt:2,humano:1}],
-    ['Aprendo profundamente como essas novas tecnologias funcionam.',{tecnico:3}]
-  ];
   const c=n.querySelector('#c');
-  opts.forEach(([txt,eff])=>{
-    const b=document.createElement('div');b.className='choice';b.textContent=txt;
-    b.onclick=()=>{Object.entries(eff).forEach(([k,v])=>bump(k,v));log('2028: '+txt);screenSecondEvent();};
+  pool.forEach(opt=>{
+    const b=document.createElement('div');b.className='choice';
+    b.innerHTML=`${opt.text}<small>${opt.hint||''}</small>`;
+    b.onclick=()=>{
+      applyEffects(opt.effects); logHist(age,opt.hist);
+      if(opt.migrate){ S.stats.careerChangeChance=clamp(S.stats.careerChangeChance+10); }
+      nextAfter(age);
+    };
     c.appendChild(b);
   });
   render(n);
 }
 
-// ---------- 2031 ----------
-function screenSecondEvent(){
-  const n=el(`${bar(48)}${timelineHTML('2031')}
-    <div class="line">Uma nova geração de inteligência artificial consegue realizar tarefas que, poucos anos atrás, pareciam exclusivamente humanas.</div>
-    <div class="line" style="color:var(--dim)">Uma tarefa que levava horas agora pode ser feita em minutos com auxílio de IA na área de ${S.area.toLowerCase()}.</div>
+function screenEvent(age,pct,nextFn){
+  const candidates=EVENTS.filter(e=>e.cond(S));
+  const ev=candidates[Math.floor(Math.random()*candidates.length)]||EVENTS[1];
+  const n=el(`${bar(pct)}<div class="eyebrow">${age} ANOS · ACONTECIMENTO</div>
+    <div class="big" style="font-size:23px">${ev.title}</div>
     <div class="choices" id="c"></div>`);
-  const opts=[
-    ['Utilizar a tecnologia no dia a dia.',{adapt:2,tecnico:1}],
-    ['Continuar trabalhando da maneira tradicional.',{tradicional:2}],
-    ['Aprender uma nova habilidade.',{adapt:1,humano:1}],
-    ['Mudar de empresa.',{adapt:1}],
-    ['Mudar parcialmente de carreira.',{humano:1,adapt:1}],
-    ['Empreender.',{adapt:2,humano:1}],
-    ['Especializar-se em atividades humanas.',{humano:3}],
-    ['Estudar IA a fundo.',{tecnico:3}]
-  ];
   const c=n.querySelector('#c');
-  opts.forEach(([txt,eff])=>{
-    const b=document.createElement('div');b.className='choice';b.textContent=txt;
-    b.onclick=()=>{Object.entries(eff).forEach(([k,v])=>bump(k,v));log('2031: '+txt);screenPhysical();};
+  ev.opts.forEach(opt=>{
+    const b=document.createElement('div');b.className='choice';b.textContent=opt.text;
+    b.onclick=()=>{applyEffects(opt.effects);logHist(age,opt.hist);nextFn();};
     c.appendChild(b);
   });
   render(n);
 }
 
-// ---------- 2035 PHYSICAL AUTOMATION ----------
-function screenPhysical(){
-  const n=el(`${bar(60)}${timelineHTML('2035')}
-    <div class="line">Agora não é apenas software. Robótica, veículos autônomos e sistemas automatizados avançam.</div>
-    <div class="line">Automatizar tarefas não significa necessariamente eliminar uma profissão inteira.</div>
-    <div class="diagram">${S.prof}
-  ↓
-conjunto de tarefas
-  ↓
-algumas podem ser automatizadas
-  ↓
-outras continuam dependendo principalmente de pessoas</div>
-    <div class="btnrow"><button class="primary" id="go">Continuar</button></div>`);
-  render(n);
-  n.querySelector('#go').onclick=screenCrisis;
+function nextAfter(age){
+  if(age===21) screenDecision(25);
+  else if(age===25) screenDecision(28);
+  else if(age===31) screenDecision(35);
+  else if(age===40) screenConclusion();
 }
 
-// ---------- 2040 CRISIS ----------
-function screenCrisis(){
-  const n=el(`${bar(72)}${timelineHTML('2040')}
-    <div class="tag">CENÁRIO HIPOTÉTICO, NÃO UMA PREVISÃO</div>
-    <div class="line">Empresas de diversos países aceleraram a automação simultaneamente. Milhões de trabalhadores precisam se adaptar a novas funções.</div>
-    <div class="line">Seu setor está passando por uma grande transformação.</div>
-    <div class="choices" id="c"></div>`);
-  const opts=[
-    ['Aceitar trabalhar utilizando IA.',{adapt:2,tecnico:1}],
-    ['Fazer uma nova formação.',{adapt:2,humano:1}],
-    ['Migrar de profissão.',{humano:2}],
-    ['Abrir um negócio.',{adapt:2,humano:1}],
-    ['Especializar-se.',{tecnico:2,adapt:1}],
-    ['Buscar uma função baseada em relações humanas.',{humano:3}],
-    ['Trabalhar desenvolvendo ou supervisionando sistemas automatizados.',{tecnico:3}],
-    ['Continuar na profissão tradicional.',{tradicional:3}]
-  ];
-  const c=n.querySelector('#c');
-  opts.forEach(([txt,eff])=>{
-    const b=document.createElement('div');b.className='choice';b.textContent=txt;
-    b.onclick=()=>{Object.entries(eff).forEach(([k,v])=>bump(k,v));log('2040: '+txt);screenConsequence();};
-    c.appendChild(b);
-  });
-  render(n);
-}
-
-// ---------- CONSEQUENCE ----------
-function computeEnding(){
+/* ---------------- CONCLUSÃO ---------------- */
+function cargoLevel(){
   const s=S.stats;
-  if(s.tradicional>=6 && s.adapt<3) return {cls:'warn',emoji:'🔴',title:'DESEMPREGO TECNOLÓGICO',
-    txt:'Sua função sofreu uma automação muito intensa e você está temporariamente procurando uma nova posição. Isso não significa desemprego permanente — significa que uma transição é necessária.'};
-  if(s.tradicional>=4) return {cls:'warn',emoji:'🟠',title:'PRESSÃO DA AUTOMAÇÃO',
-    txt:'Grande parte das tarefas que você realizava passou a ser automatizada e existem menos vagas tradicionais na sua função original.'};
-  if(s.tecnico>=6) return {cls:'',emoji:'🔵',title:'HUMANO + MÁQUINA',
-    txt:'Você utiliza IA constantemente e sua produtividade aumentou muito. Seu papel virou o de orientar, revisar e decidir sobre o que as máquinas produzem.'};
-  if(s.humano>=6) return {cls:'gold',emoji:'🟡',title:'REQUALIFICAÇÃO',
-    txt:'Parte das suas habilidades técnicas perdeu valor de mercado, mas você desenvolveu novas competências ligadas ao julgamento humano e à relação com pessoas.'};
-  if(s.adapt>=5 && s.humano>=3) return {cls:'',emoji:'🟣',title:'NOVA PROFISSÃO',
-    txt:'As transformações tecnológicas fizeram você migrar para uma ocupação que praticamente não existia quando começou sua carreira.'};
-  return {cls:'',emoji:'🟢',title:'PROFISSÃO TRANSFORMADA',
-    txt:'Você continua como '+S.prof+', mas suas atividades diárias são muito diferentes das de 2026.'};
+  if(s.promotionChance>65) return 'Gestor(a) / Liderança';
+  if(s.specialization>65) return 'Especialista Sênior';
+  if(s.experience+s.qualification>90) return 'Sênior';
+  if(s.experience>35) return 'Pleno';
+  return 'Júnior';
 }
-function screenConsequence(){
-  const e=computeEnding();S.ending=e;
-  const n=el(`${bar(80)}<div class="eyebrow">SUA TRAJETÓRIA</div>
-    <div class="result ${e.cls}"><h3>${e.emoji} ${e.title}</h3><p>${e.txt}</p></div>
-    <div class="btnrow"><button class="primary" id="go">Continuar</button></div>`);
-  render(n);
-  n.querySelector('#go').onclick=screenReveal;
+function salaryTier(){
+  const v=S.stats.salary;
+  if(v>75) return 'alto';
+  if(v>50) return 'médio-alto';
+  if(v>30) return 'médio';
+  return 'inicial';
 }
-
-// ---------- REVEAL ----------
-function screenReveal(){
-  const lines=['Mas existe um problema.','Você estava pensando apenas na SUA carreira.',
-    '1 pessoa → 1.000 pessoas → 1 milhão → centenas de milhões de trabalhadores',
-    'E se essa transformação acontecer simultaneamente em vários países e setores?'];
-  let i=0;
-  const n=el(`<div id="ln" class="big" style="font-size:24px"></div>
-    <div class="btnrow"><button class="primary" id="go" style="display:none">Continuar</button></div>`);
-  render(n);
-  const ln=n.querySelector('#ln'), go=n.querySelector('#go');
-  function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step, 2800);else go.style.display='inline-block';}
-  step();
-  go.onclick=screenParadox;
+function aiImpact(){
+  const s=S.stats;
+  if(s.automationRisk>60 && s.techAdapt<35) return {cls:'warn',emoji:'🔴',title:'Grande necessidade de adaptação',
+    txt:'Sua profissão sofreu forte pressão da automação e você não acompanhou as mudanças tecnológicas na mesma velocidade. Suas oportunidades diminuíram, mas sua experiência ainda tem valor caso você se atualize agora.'};
+  if(s.automationRisk>55) return {cls:'warn',emoji:'🟠',title:'Automação parcial',
+    txt:'Parte significativa das suas tarefas repetitivas foi automatizada. Você ainda trabalha na área, mas o volume de vagas tradicionais diminuiu.'};
+  if(s.techAdapt>65 && s.aiExposure>50) return {cls:'blue',emoji:'🔵',title:'Transformação com oportunidade',
+    txt:'Sua decisão de aprender a trabalhar com novas tecnologias abriu oportunidades em uma área emergente. A IA se tornou uma ferramenta do seu dia a dia, não uma ameaça.'};
+  if(s.humanRelated||P[S.profId].humanSkill>65) return {cls:'gold',emoji:'🟡',title:'Baixo impacto direto',
+    txt:'Sua profissão depende fortemente de relação humana, julgamento e confiança — habilidades que a automação ainda reproduz com dificuldade. O impacto da IA foi mais indireto do que direto.'};
+  return {cls:'',emoji:'🟢',title:'Transformação significativa',
+    txt:'Sua carreira permaneceu relevante, mas mudou significativamente. Tarefas repetitivas foram automatizadas e novas habilidades passaram a ser exigidas.'};
+}
+function futureText(){
+  const s=S.stats;
+  if(s.careerChangeChance>55) return 'Nos próximos anos, uma mudança de carreira se torna cada vez mais provável — suas escolhas abriram portas para uma área diferente da que você começou.';
+  if(s.techAdapt>60) return 'Nos próximos anos, sua capacidade de se adaptar a novas tecnologias deve mantê-lo(a) relevante, mesmo com novas ondas de automação.';
+  if(s.automationRisk>55) return 'Nos próximos anos, será necessário investir em requalificação para não perder espaço no mercado.';
+  return 'Nos próximos anos, sua trajetória deve seguir relativamente estável, com ajustes graduais conforme a tecnologia avança.';
 }
 
-// ---------- PARADOX ----------
-function screenParadox(){
-  const n=el(`${bar(90)}<div class="line">As máquinas poderiam produzir mais bens e serviços utilizando menos trabalho humano.</div>
-    <div class="line">Isso seria uma crise… ou uma conquista?</div>
-    <div class="scenarios">
-      <div class="sc"><b>CENÁRIO A</b><br>Automação aumenta a produtividade, surgem novas profissões e trabalhadores migram para novas atividades.</div>
-      <div class="sc"><b>CENÁRIO B</b><br>Automação acontece mais rapidamente do que a criação de novas oportunidades, provocando desemprego tecnológico em grande escala.</div>
-      <div class="sc"><b>CENÁRIO C</b><br>A sociedade reorganiza o trabalho. Jornadas diminuem e máquinas realizam grande parte das tarefas repetitivas.</div>
-    </div>
-    <div class="btnrow"><button class="primary" id="go">Continuar</button></div>`);
-  render(n);
-  n.querySelector('#go').onclick=screenFinal;
-}
-
-// ---------- FINAL ----------
-function screenFinal(){
-  const lines=['Durante toda essa experiência, você tentou proteger o seu emprego.',
-    'Mas talvez essa não seja a pergunta mais importante.',
-    'Se máquinas forem capazes de produzir grande parte daquilo que precisamos…',
-    '…por que nossa sobrevivência ainda dependeria de trabalhar da mesma maneira?',
-    'O problema do futuro talvez não seja simplesmente MÁQUINAS ROUBANDO EMPREGOS.',
-    'E sim: COMO A SOCIEDADE VAI SE ADAPTAR QUANDO PRECISAR DE MENOS TRABALHO HUMANO PARA PRODUZIR MAIS?'];
-  let i=0;
-  const n=el(`<div id="ln" class="big" style="font-size:22px"></div>
-    <div class="btnrow"><button class="primary" id="go" style="display:none">Continuar</button></div>`);
-  render(n);
-  const ln=n.querySelector('#ln'), go=n.querySelector('#go');
-  function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step, 2800);else go.style.display='inline-block';}
-  step();
-  go.onclick=screenTitle;
-}
-function screenTitle(){
-  const n=el(`<div class="big" style="font-size:26px">O PRIMEIRO DESEMPREGO GLOBAL CAUSADO PELAS MÁQUINAS PODE ACONTECER?</div>
-    <div class="line" style="color:var(--dim)">Talvez.<br>Mas a tecnologia, sozinha, não determina o futuro.<br>Educação, economia, empresas, governos e as escolhas da própria sociedade também influenciam o que acontecerá.</div>
-    <div class="line" style="margin-top:20px;font-weight:600">Se uma máquina pudesse fazer o seu trabalho amanhã, o que você faria hoje?</div>
-    <div class="btnrow"><button class="primary" id="go">Ver minha jornada</button></div>`);
-  render(n);
-  n.querySelector('#go').onclick=screenSummary;
-}
-
-// ---------- SUMMARY ----------
-function screenSummary(){
-  const e=S.ending;
-  let played=[];
-  try{played=JSON.parse(localStorage.getItem('esf_endings')||'[]');}catch(err){played=[];}
-  played.push(e.title);
-  try{localStorage.setItem('esf_endings',JSON.stringify(played));}catch(err){}
+function screenConclusion(){
+  const pr=P[S.profId];
+  const impact=aiImpact();
   const n=el(`${bar(100)}<div class="eyebrow">SUA JORNADA</div>
-    <div class="summary-row"><span>Área</span><span>${S.area}</span></div>
-    <div class="summary-row"><span>Profissão</span><span>${S.prof}</span></div>
-    <div class="summary-row"><span>Características</span><span>${S.traits.join(', ')||'—'}</span></div>
-    <div class="summary-row"><span>Decisões</span><span>${S.choices.length}</span></div>
-    <div class="result ${e.cls}"><h3>${e.emoji} ${e.title}</h3><p>${e.txt}</p></div>
-    <div class="line" style="color:var(--dim);font-size:13px">Você já jogou ${played.length} vez(es) neste dispositivo.</div>
+    <div class="big" style="font-size:26px">Conclusão personalizada</div>
+    <div class="summary-row"><span>Profissão final</span><span>${pr.name}</span></div>
+    <div class="summary-row"><span>Cargo</span><span>${cargoLevel()}</span></div>
+    <div class="summary-row"><span>Nível salarial</span><span>${salaryTier()}</span></div>
+    <div class="summary-row"><span>Especialização</span><span>${S.stats.specialization>55?'alta':S.stats.specialization>30?'média':'baixa'}</span></div>
+    <div class="summary-row"><span>Estabilidade</span><span>${S.stats.stability>55?'alta':S.stats.stability>30?'média':'baixa'}</span></div>
+    ${statBadges(['automationRisk','aiExposure','techAdapt','opportunities'])}
+    <div class="result ${impact.cls}"><h3>${impact.emoji} Impacto da IA: ${impact.title}</h3><p>${impact.txt}</p></div>
+    <div class="line">${futureText()}</div>
+    <div class="btnrow"><button class="primary" id="go">Ver linha do tempo</button></div>`);
+  render(n);
+  n.querySelector('#go').onclick=screenTimeline;
+}
+
+function screenTimeline(){
+  const n=el(`<div class="eyebrow">LINHA DO TEMPO</div>
+    <div class="vtimeline">${S.timeline.map(t=>`<div class="ev"><div class="age">${t.age} anos</div><div class="txt">${t.text}</div></div>`).join('')}</div>
     <div class="btnrow"><button class="primary" id="restart">RECOMEÇAR MINHA HISTÓRIA</button></div>`);
   render(n);
-  n.querySelector('#restart').onclick=()=>{
-    S={traits:[],area:null,prof:null,choices:[],stats:{adapt:0,humano:0,tecnico:0,tradicional:0}};
-    screenIntro();
-  };
+  n.querySelector('#restart').onclick=screenIntro;
 }
 
 screenIntro();
