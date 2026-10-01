@@ -251,7 +251,7 @@ function screenIntro(){
     <div class="btnrow"><button class="primary" id="go" style="display:none">COMEÇAR MINHA HISTÓRIA</button></div>`);
   render(n);
   const ln=n.querySelector('#ln'), go=n.querySelector('#go');
-  (function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step,1500);else go.style.display='inline-block';})();
+  (function step(){ln.textContent=lines[i];i++;if(i<lines.length)setTimeout(step,9500);else go.style.display='inline-block';})();
   go.onclick=screenPath;
 }
 
