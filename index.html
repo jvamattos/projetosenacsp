@@ -284,8 +284,9 @@ const COURSE_JOBS={
  engenharia:['eng-civil','engenheiro','eng-mecanica','eng-eletrica'],
  negocios:['gerente','analista-financeiro','empreendedor','consultor'],
  comunicacao:['jornalista','social-media','marketing','redator'],
+ arquitetura:['arquiteto'],
 };
-const COURSE_LABELS={medicina:'Medicina',direito:'Direito',engenharia:'Engenharia',negocios:'Administração e Negócios',comunicacao:'Jornalismo e Comunicação'};
+const COURSE_LABELS={medicina:'Medicina',direito:'Direito',engenharia:'Engenharia',negocios:'Administração e Negócios',comunicacao:'Jornalismo e Comunicação',arquitetura:'Arquitetura'};
 /* ---------------- CONFIG ECONÔMICA CENTRAL ---------------- */
 const CONFIG={
   initial:{finStability:10,physFatigue:10,mentalStress:10,fulfillment:10,salaryLevel:0,saldo:0},
@@ -697,6 +698,7 @@ function screenFacultyArea(){
    {key:'engenharia',em:'🏗️',t:'Engenharia',d:'Formação técnica e exatas.'},
    {key:'negocios',em:'💼',t:'Administração e Negócios',d:'Gestão, finanças e mercado.'},
    {key:'comunicacao',em:'📰',t:'Jornalismo e Comunicação',d:'Mídia, redação e informação.'},
+   {key:'arquitetura',em:'🏛️',t:'Arquitetura',d:'Projeto de edificações, planejamento de espaços e acompanhamento de obras.'},
    {key:'ti',em:'🖥️',t:'Tecnologia da Informação',d:'Ciência da Computação ou Sistemas de Informação.'}
   ];
   courses.forEach(a=>{
@@ -716,7 +718,7 @@ function screenFacultyArea(){
 function firstJobAge(){
   if(S.pathKey!=='faculdade') return 21;
   if(S.subArea==='ti-formal') return 22;
-  const map={medicina:24,direito:24,engenharia:23,negocios:22,comunicacao:22};
+  const map={medicina:24,direito:24,engenharia:23,arquitetura:23,negocios:22,comunicacao:22};
   return map[S.subArea]||23;
 }
 function screenFirstJob(){
